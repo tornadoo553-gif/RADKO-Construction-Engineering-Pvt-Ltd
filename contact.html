@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="RADKO Construction & Engineering Pvt. Ltd.">
+<meta name="theme-color" content="#ff6b00">
+<title>Contact - RADKO</title>
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<header class="header" id="header">
+<div class="container">
+<nav class="navbar">
+<a href="index.html" class="logo"><img src="logo.jpeg" alt="RADKO Logo"></a>
+<ul class="nav-menu">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="careers.html">Careers</a></li>
+<li><a class="active" href="contact.html">Contact</a></li>
+</ul>
+<button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="section">
+<div class="container">
+<div class="section-header">
+<div>
+<span class="section-subtitle">CONTACT</span>
+<h1 class="section-title">Contact Us</h1>
+</div>
+</div>
+
+<div id="googleMap"></div>
+
+<div id="contactInfo"></div>
+
+<form id="contactForm">
+<input type="text" name="name" placeholder="Name" required>
+<input type="tel" name="phone" placeholder="Phone" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="text" name="subject" placeholder="Subject" required>
+<textarea name="message" placeholder="Message" required></textarea>
+<button class="primary-btn" type="submit">Send Message</button>
+</form>
+
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="container">
+<div class="footer-wrapper">
+<div class="footer-column" id="footerCompany"></div>
+<div class="footer-column">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="careers.html">Careers</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<h3>Services</h3>
+<ul id="footerServices"></ul>
+</div>
+<div class="footer-column">
+<h3>Contact</h3>
+<div id="footerContact"></div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; <span id="copyrightYear"></span> RADKO Construction & Engineering Pvt. Ltd.</p>
+</div>
+</div>
+</footer>
+
+<a href="#" id="whatsappButton" class="whatsapp-btn"><i class="fa-brands fa-whatsapp"></i></a>
+<button id="scrollTop" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="javascript/config.js"></script>
+<script src="javascript/main.js"></script>
+</body>
+</html>

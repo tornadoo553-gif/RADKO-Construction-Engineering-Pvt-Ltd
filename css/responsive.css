@@ -1,0 +1,183 @@
+@media (max-width:1200px){
+.container{width:min(94%,1080px)}
+.services-layout{grid-template-columns:minmax(0,1.7fr) 330px}
+}
+
+@media (max-width:992px){
+.section{padding:76px 0}
+.navbar{height:76px}
+.logo img{height:54px}
+.menu-btn{display:grid}
+.nav-menu{
+position:fixed;
+top:76px;
+right:-100%;
+width:min(340px,100%);
+height:calc(100vh - 76px);
+background:#fff;
+flex-direction:column;
+align-items:flex-start;
+padding:34px 26px;
+gap:18px;
+box-shadow:-16px 0 36px rgba(28,35,43,.14);
+transition:.32s ease;
+z-index:999;
+}
+.nav-menu.active{right:0}
+.nav-menu a{font-size:1.05rem}
+.hero{
+height:76vh;
+min-height:560px;
+}
+.about-wrapper,
+.services-layout{
+grid-template-columns:1fr;
+}
+.why-us{
+position:static;
+}
+.footer-wrapper{
+grid-template-columns:repeat(2,1fr);
+}
+.job-card{
+grid-template-columns:1fr;
+gap:12px;
+}
+}
+
+@media (max-width:768px){
+.container{width:91%}
+.section{padding:62px 0}
+.section-header{
+align-items:flex-start;
+margin-bottom:32px;
+}
+.primary-btn{
+width:100%;
+}
+.hero{
+height:70vh;
+min-height:500px;
+}
+.hero-content{
+padding-top:12px;
+}
+.hero-content p{
+font-size:1rem;
+}
+.hero-controls{
+bottom:18px;
+gap:12px;
+}
+.hero-controls>button{
+width:40px;
+height:40px;
+}
+.about-image::before{
+inset:14px -10px -10px 14px;
+}
+.services-grid,
+.projects-grid,
+.profile-grid,
+.list-grid{
+grid-template-columns:1fr;
+}
+.project-image{
+height:215px;
+}
+#projectFilters{
+overflow-x:auto;
+flex-wrap:nowrap;
+padding-bottom:8px;
+}
+#projectFilters button{
+white-space:nowrap;
+}
+#contactInfo{
+grid-template-columns:1fr;
+}
+#googleMap{
+height:300px;
+}
+form{
+grid-template-columns:1fr;
+padding:22px;
+}
+.footer-wrapper{
+grid-template-columns:1fr;
+gap:30px;
+}
+.whatsapp-btn,
+.scroll-top{
+width:50px;
+height:50px;
+right:15px;
+font-size:1.28rem;
+}
+.whatsapp-btn{bottom:78px}
+.scroll-top{bottom:15px}
+}
+
+@media (max-width:520px){
+body{font-size:15px}
+.navbar{height:70px}
+.logo img{height:46px}
+.nav-menu{
+top:70px;
+height:calc(100vh - 70px);
+width:100%;
+}
+.menu-btn{
+width:40px;
+height:40px;
+}
+.section{padding:52px 0}
+.section-subtitle{
+letter-spacing:1px;
+}
+.hero{
+height:68vh;
+min-height:430px;
+}
+.hero-content h2{
+font-size:2.15rem;
+}
+.hero-kicker{
+font-size:.72rem;
+letter-spacing:1px;
+}
+.hero-kicker::before,
+.section-subtitle::before{
+width:28px;
+}
+.hero-pagination button{
+width:9px;
+height:9px;
+}
+.hero-pagination button.active{
+width:24px;
+}
+.about-image img{
+padding:16px;
+}
+.service-card,
+.why-us,
+.project-content,
+.profile-card,
+.info-card,
+.job-card,
+.contact-card{
+padding:20px;
+}
+.project-image{
+height:190px;
+}
+#googleMap{
+height:260px;
+}
+input,
+textarea,
+select{
+padding:13px 14px;
+}
+}
