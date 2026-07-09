@@ -11,7 +11,7 @@
  *   - Services
  *   - Team
  *   - Certificates
- *   - Achievements
+ *   - footer
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -195,7 +195,95 @@ render(b.dataset.cat);
 }
 
 })();
+/* ---------- Job Openings ---------- */
 
+(async()=>{
+
+const container=$("#jobOpenings");
+
+if(!container) return;
+
+let jobs=await loadSheet("JobOpenings");
+
+jobs=jobs
+.filter(j=>String(j.active).toLowerCase()!="false")
+.sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder));
+
+if(!jobs.length){
+
+container.innerHTML=`
+<div class="section-header">
+<div>
+<span class="section-subtitle">CURRENT OPENINGS</span>
+<h2 class="section-title">We're Hiring</h2>
+</div>
+</div>
+
+<div class="empty-state">
+<h3>No Current Openings</h3>
+<p>
+We currently do not have any active job openings.
+However, we are always interested in connecting with talented
+professionals. Please submit your resume using the application
+form below for future opportunities.
+</p>
+</div>
+`;
+
+return;
+
+}
+
+container.innerHTML=`
+
+<div class="section-header">
+<div>
+<span class="section-subtitle">CURRENT OPENINGS</span>
+<h2 class="section-title">We're Hiring</h2>
+</div>
+</div>
+
+<div class="job-list">
+
+${jobs.map(job=>`
+
+<div class="job-card">
+
+<div>
+
+<span>${esc(job.department)}</span>
+
+<h3>${esc(job.title)}</h3>
+
+<p><i class="fa-solid fa-location-dot"></i>${esc(job.location)}</p>
+
+<p><i class="fa-solid fa-briefcase"></i>${esc(job.employmentType)}</p>
+
+<p><i class="fa-solid fa-user-clock"></i>${esc(job.experience)}</p>
+
+</div>
+
+<div>
+
+<p>${esc(job.description)}</p>
+
+<br>
+
+<a href="#careerForm" class="primary-btn">
+Apply Now
+</a>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+`;
+
+})();
 /* ---------- Contact ---------- */
 
 const contact=$("#contactForm");
