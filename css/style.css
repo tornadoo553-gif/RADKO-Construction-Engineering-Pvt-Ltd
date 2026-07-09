@@ -700,3 +700,67 @@ color:var(--muted);
 font-weight:700;
 text-align:center;
 }
+/* ===========================
+   Director Message
+=========================== */
+.director-card{
+margin-top:20px;
+text-align:center;
+}
+
+.director-card h3{
+font-size:1.2rem;
+color:var(--secondary);
+margin-bottom:4px;
+}
+
+.director-card p{
+color:var(--primary);
+font-weight:600;
+margin:0;
+}
+/* ===========================
+   Footer Contact
+=========================== */
+
+.footer-column li{
+display:flex;
+align-items:flex-start;
+gap:10px;
+margin-bottom:12px;
+}
+
+.footer-column li i{
+color:var(--primary);
+margin-top:5px;
+min-width:18px;
+}
+
+.footer-column li a{
+overflow-wrap:anywhere;
+}
+
+#footerSocial{
+display:flex;
+align-items:center;
+gap:18px;
+margin-top:18px;
+}
+
+#footerSocial a{
+width:40px;
+height:40px;
+display:grid;
+place-items:center;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+color:#fff;
+font-size:1.1rem;
+transition:var(--transition);
+}
+
+#footerSocial a:hover{
+background:var(--primary);
+color:#fff;
+transform:translateY(-2px);
+}
