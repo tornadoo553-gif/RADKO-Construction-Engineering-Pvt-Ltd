@@ -174,15 +174,19 @@ if(home){
 home.innerHTML=projects.slice(0,6).map(card).join("");
 }
 
-if(page){
+if(home || page){
 
-const filters=$("#projectFilters");
+const filters = page ? $("#projectFilters") : null;
+
+if(filters){
 
 const cats=["All",...new Set(projects.map(x=>x.category))];
 
 filters.innerHTML=cats.map(c=>
 `<button data-cat="${c}" class="${c=="All"?"active":""}">${c}</button>`
 ).join("");
+
+}
 
 function render(cat){
 
@@ -194,7 +198,9 @@ page.innerHTML=arr.map(card).join("");
 
 }
 
+if(page){
 render("All");
+}
 const gallery=$("#projectGallery");
 const galleryImage=$("#galleryImage");
 galleryImage.onload=()=>{
@@ -220,7 +226,7 @@ galleryThumbnails.innerHTML=currentImages.map((img,index)=>`
 `).join("");
 
 }
-page.addEventListener("click",e=>{
+function openGallery(e){
 
 const card=e.target.closest(".project-card");
 
@@ -234,10 +240,15 @@ galleryTitle.textContent=card.dataset.title;
 galleryLocation.textContent=card.dataset.location;
 galleryDescription.textContent=card.dataset.description;
 galleryDate.textContent=card.dataset.date;
+
 updateGalleryUI();
+
 gallery.classList.add("active");
 
-});
+}
+
+home?.addEventListener("click",openGallery);
+page?.addEventListener("click",openGallery);
 
 $(".gallery-close").onclick=()=>{
 gallery.classList.remove("active");
