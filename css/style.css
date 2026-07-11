@@ -14,7 +14,6 @@
 --transition:.25s ease;
 --container:1180px;
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -23,6 +22,11 @@ font-size:16px;
 line-height:1.7;
 color:var(--text);
 background:#fff;
+}
+html,
+body{
+    overflow-x: hidden;
+    width: 100%;
 }
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
