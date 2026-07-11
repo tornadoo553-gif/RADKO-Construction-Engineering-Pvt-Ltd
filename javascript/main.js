@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const $=(s,p=document)=>p.querySelector(s);
 const $$=(s,p=document)=>[...p.querySelectorAll(s)];
-
+const IMAGE_SEPARATOR = "(##IMG##)";
 function esc(v){
   return String(v??"")
   .replace(/&/g,"&amp;")
@@ -33,7 +33,16 @@ function drive(url){
       return `https://drive.google.com/uc?export=view&id=${m[0]}`;
   return url;
 }
+function getProjectImages(mediaURL){
 
+if(!mediaURL) return [];
+
+return mediaURL
+.split(IMAGE_SEPARATOR)
+.map(url=>drive(url.trim()))
+.filter(Boolean);
+
+}
 async function loadSheet(name){
    const res=await CONFIG.get(name);
    return Array.isArray(res)?res:[];
@@ -135,11 +144,19 @@ projects=projects
 .sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder));
 
 function card(p){
+const images = getProjectImages(p.mediaURL);
+
 return `
-<div class="project-card">
+<div class="project-card"
+data-images='${JSON.stringify(images)}'
+data-title="${esc(p.title)}"
+data-category="${esc(p.category)}"
+data-location="${esc(p.location)}"
+data-description="${esc(p.description)}"
+data-date="${esc(p.completedDate || "")}">
 
 <div class="project-image">
-<img src="${drive(p.mediaURL)}" alt="">
+<img src="${images[0] || ""}" alt="">
 <span>${esc(p.category)}</span>
 </div>
 
@@ -147,7 +164,7 @@ return `
 <h3>${esc(p.title)}</h3>
 <p class="project-meta">${esc(p.location)}</p>
 <p>${esc(p.description)}</p>
-${p.completedDate?`<strong>${esc(p.completedDate)}</strong>`:""}
+${p.completedDate ? `<strong>${esc(p.completedDate)}</strong>` : ""}
 </div>
 
 </div>`;
@@ -178,7 +195,99 @@ page.innerHTML=arr.map(card).join("");
 }
 
 render("All");
+const gallery=$("#projectGallery");
+const galleryImage=$("#galleryImage");
+galleryImage.onload=()=>{
+galleryImage.style.opacity="1";
+};
+const galleryTitle=$("#galleryTitle");
+const galleryLocation=$("#galleryLocation");
+const galleryDescription=$("#galleryDescription");
+const galleryDate=$("#galleryDate");
+const galleryCounter=$("#galleryCounter");
+const galleryThumbnails=$("#galleryThumbnails");
+let currentImages=[];
+let currentIndex=0;
+function updateGalleryUI(){
 
+galleryCounter.textContent=
+`${String(currentIndex+1).padStart(2,"0")} / ${String(currentImages.length).padStart(2,"0")}`;
+
+galleryThumbnails.innerHTML=currentImages.map((img,index)=>`
+<div class="gallery-thumb ${index===currentIndex?"active":""}" data-index="${index}">
+<img src="${img}" alt="">
+</div>
+`).join("");
+
+}
+page.addEventListener("click",e=>{
+
+const card=e.target.closest(".project-card");
+
+if(!card) return;
+
+currentImages=JSON.parse(card.dataset.images||"[]");
+currentIndex=0;
+
+galleryImage.src=currentImages[0]||"";
+galleryTitle.textContent=card.dataset.title;
+galleryLocation.textContent=card.dataset.location;
+galleryDescription.textContent=card.dataset.description;
+galleryDate.textContent=card.dataset.date;
+updateGalleryUI();
+gallery.classList.add("active");
+
+});
+
+$(".gallery-close").onclick=()=>{
+gallery.classList.remove("active");
+};
+
+$(".gallery-overlay").onclick=()=>{
+gallery.classList.remove("active");
+};
+function showImage(index){
+
+if(!currentImages.length) return;
+
+if(index<0){
+index=currentImages.length-1;
+}
+
+if(index>=currentImages.length){
+index=0;
+}
+
+currentIndex=index;
+
+galleryImage.style.opacity="0";
+
+setTimeout(()=>{
+
+galleryImage.src=currentImages[currentIndex];
+
+updateGalleryUI();
+
+},150);
+
+}
+
+$(".gallery-prev").onclick=()=>{
+showImage(currentIndex-1);
+};
+
+$(".gallery-next").onclick=()=>{
+showImage(currentIndex+1);
+};
+galleryThumbnails.onclick=e=>{
+
+const thumb=e.target.closest(".gallery-thumb");
+
+if(!thumb) return;
+
+showImage(Number(thumb.dataset.index));
+
+};
 filters.onclick=e=>{
 
 const b=e.target.closest("button");
